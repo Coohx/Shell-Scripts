@@ -1,2 +1,4 @@
- Shell-Scripts
-一些shell练习脚本
+### shell 练习题
+
+
+1. tans _ file: 自动分发文件系统

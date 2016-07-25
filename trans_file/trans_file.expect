@@ -3,9 +3,10 @@
 # Author:huangxin
 # 传入参数$0---主机IP
 # 传入参数$1---待分发的文件列表
+# 要求所有远程主机密码相同
 
 set host [lindex $argv 0]
-set passwd "hx202823"
+set passwd "******"
 set file [lindex $argv 1]
 
 spawn rsync -arvzP --files-from=$file /  root@$host:/home/rsync/
