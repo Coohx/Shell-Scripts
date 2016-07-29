@@ -70,12 +70,12 @@ wget -P /etc/yum.repos.d/ http://mirrors.aliyun.com/repo/epel-6.repo
 
 ##function of installing mysqld.
 install_mysqld() {
-	echo "Chose the version of mysql."
-	select mysql_v in 5.1 5.6
-	do
+    echo "Chose the version of mysql."
+    select mysql_v in 5.1 5.6
+    do
         case $mysql_v in
         5.1)
-		    cd /usr/local/src
+			cd /usr/local/src
             # 若存在mysql源码包，直接进行下一步；若不存在，则去下载。---->|| 实现
             # 直接写 [-f ***]条件表达式
 		    [ -f mysql-5.1.72-linux-$ar-glibc23.tar.gz ] || wget http://mirrors.sohu.com/mysql/MySQL-5.1/mysql-5.1.72-linux-$ar-glibc23.tar.gz
@@ -149,7 +149,7 @@ install_mysqld() {
             echo "only 1(5.1) or 2(5.6)"
             #exit 1
             ;;
-		esac
+         esac
     done
 }
 
