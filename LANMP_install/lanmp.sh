@@ -73,16 +73,16 @@ install_mysqld() {
 	echo "Chose the version of mysql."
 	select mysql_v in 5.1 5.6
 	do
-    	case $mysql_v in
+        case $mysql_v in
         5.1)
-        	cd /usr/local/src
-			# 若存在mysql源码包，直接进行下一步；若不存在，则去下载。---->|| 实现
-			# 直接写 [-f ***]条件表达式
-        	[ -f mysql-5.1.72-linux-$ar-glibc23.tar.gz ] || wget http://mirrors.sohu.com/mysql/MySQL-5.1/mysql-5.1.72-linux-$ar-glibc23.tar.gz
+		    cd /usr/local/src
+            # 若存在mysql源码包，直接进行下一步；若不存在，则去下载。---->|| 实现
+            # 直接写 [-f ***]条件表达式
+		    [ -f mysql-5.1.72-linux-$ar-glibc23.tar.gz ] || wget http://mirrors.sohu.com/mysql/MySQL-5.1/mysql-5.1.72-linux-$ar-glibc23.tar.gz
             tar zxf mysql-5.1.72-linux-$ar-glibc23.tar.gz
             check_ok
 			# 若mysql目录已经存在，则备份后删除（时间戳防覆盖）
-            [ -d /usr/local/mysql ] && /bin/mv /usr/local/mysql /usr/local/mysql_`date +%s`
+			[ -d /usr/local/mysql ] && /bin/mv /usr/local/mysql /usr/local/mysql_`date +%s`
             mv mysql-5.1.72-linux-$ar-glibc23 /usr/local/mysql
             check_ok
             if ! grep '^mysql:' /etc/passwd
@@ -149,8 +149,8 @@ install_mysqld() {
             echo "only 1(5.1) or 2(5.6)"
             #exit 1
             ;;
-    	esac
-	done
+		esac
+    done
 }
 
 ##function of install httpd.
@@ -230,10 +230,10 @@ install_php() {
 	echo -e "Install php.\nPlease chose the version of php."
 	select php_v in 5.4 5.6
 	do
-		case $php_v in
+        case $php_v in
         5.4)
-        	cd /usr/local/src/
-	    	# wget -O 指定下载文件保存名(--output)
+            cd /usr/local/src/
+	        # wget -O 指定下载文件保存名(--output)
             [ -f php-5.4.45.tar.bz2 ] || wget 'http://cn2.php.net/get/php-5.4.45.tar.bz2/from/this/mirror' -O php-5.4.45.tar.bz2
             tar jxf php-5.4.45.tar.bz2 && cd php-5.4.45
  
