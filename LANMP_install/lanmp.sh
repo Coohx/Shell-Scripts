@@ -384,10 +384,10 @@ install_nginx() {
 
 ##function of install php-fpm
 install_phpfpm() {
-	echo -e "Install php.\nPlease chose the version of php."
-	select php_v in 5.4 5.6
-	do
-    	case $php_v in
+    echo -e "Install php.\nPlease chose the version of php."
+    select php_v in 5.4 5.6
+    do
+        case $php_v in
         5.4)
             cd /usr/local/src/
             [ -f php-5.4.45.tar.bz2 ] || wget 'http://cn2.php.net/get/php-5.4.45.tar.bz2/from/this/mirror' -O php-5.4.45.tar.bz2
@@ -498,8 +498,8 @@ install_phpfpm() {
         *)
             echo 'only 1(5.4) or 2(5.6)'
             ;;
-    	esac
-done
+        esac
+    done
 }
 
 ##function of install lnmp
