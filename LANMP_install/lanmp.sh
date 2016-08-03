@@ -105,7 +105,7 @@ install_mysqld() {
             [ -f /etc/init.d/mysqld ] && /bin/mv /etc/init.d/mysqld /etc/init.d/mysqld_`date +%s`
 			/bin/cp support-files/mysql.server /etc/init.d/mysqld
             sed -i 's#^datadir=#datadir=/data/mysql#' /etc/init.d/mysqld
-			sed -i 's#^basedir=#basedir=/usr/local/mysql#' /etc/init.d/mysqld
+            sed -i 's#^basedir=#basedir=/usr/local/mysql#' /etc/init.d/mysqld
             chmod 755 /etc/init.d/mysqld
             chkconfig --add mysqld
             chkconfig mysqld on
@@ -136,8 +136,8 @@ install_mysqld() {
             sed -i '/^\[mysqld\]$/a\datadir = /data/mysql' /etc/my.cnf
 	    	[ -f /etc/init.d/mysqld ] && /bin/mv /etc/init.d/mysqld /etc/init.d/mysqld_`date +%s`			
             /bin/cp support-files/mysql.server /etc/init.d/mysqld
-            sed -i 's#^datadir=#datadir=/data/mysql#' /etc/init.d/mysqld
-	    	sed -i 's#^basedir=#basedir=/usr/local/mysql#' /etc/init.d/mysqld
+            sed -i 's#^datadir=#datadir=/data/mysql#' /etc/init.d/mysqlsed        
+            sed -i 's#^basedir=#basedir=/usr/local/mysql#' /etc/init.d/mysqld
             chmod 755 /etc/init.d/mysqld
             chkconfig --add mysqld
             chkconfig mysqld on
