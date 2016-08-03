@@ -1,0 +1,21 @@
+#! /usr/bin/expect
+# 远程登录并执行命令后退出
+
+set	user "root"
+set passwd "hx202823"
+set host "192.168.200.111"
+
+spawn ssh $user@$host
+
+expect {
+	#匹配“yes/no”
+	"yes/no" { send "yes\r";exp_continue }
+	"password:" { send "$passwd\r"}
+}
+#匹配root或普通用户操作提示符，*代表#/$
+expect "]*"
+send "touch /tmp/12.txt\r"
+expect "]*"
+send "echo 1212 > /tmp/12.txt\r"
+expect "]*"  
+send "exit\r"

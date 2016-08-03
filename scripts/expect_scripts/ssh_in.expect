@@ -1,0 +1,18 @@
+#!/usr/bin/expect
+# expect远程登录
+
+# set 定义变量
+set host "192.168.200.111"
+set passwd "hx202823"
+#设置远程连接超时时间
+#set timeout -3
+spawn ssh root@$host
+expect {
+	"yes/no" { send "yes\r"
+               exp_continue
+			 }
+	"assword" {send "$passwd\r"}
+}
+interact
+
+

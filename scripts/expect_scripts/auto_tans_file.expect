@@ -1,0 +1,17 @@
+#! /usr/bin/expect
+# rsync 实现文件分发
+# Author:huangxin
+# 传入参数$0---主机IP
+# 传入参数$1---待分发的文件列表
+
+set host [lindex $argv 0]
+set passwd "hx202823"
+set file [lindex $argv 1]
+
+spawn rsync -arvzP --files-from=$file /  root@$host:/home/
+
+expect {
+	"yes/no" {send "yes\r"; exp_continue}
+	"password:" {send "$passwd\r"}
+}
+expect eof

@@ -1,0 +1,13 @@
+#! /usr/bin/expect
+# expect 实现自动同步文件
+# tools-->rsync
+set host "192.168.200.111"
+set passwd "hx202823"
+#rsync -P 显示进度  -a归档(rlptgoD)  
+spawn rsync -avzP root@$host:/tmp/12.txt /tmp/
+expect {
+	#exp_continue最好加上，用于rsync第一次登陆时完整的验证，即：yes--->password(域.ssh/known_hosts有关)
+	"yes/no" { send "yes\r";exp_continue}
+	"password:" { send "$passwd\r"}
+}
+expect eof

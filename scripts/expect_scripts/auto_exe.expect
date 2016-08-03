@@ -1,0 +1,20 @@
+#!/usr/bin/expect
+# 远程登录后，自动执行命令
+# Author：huangxin
+# $host---主机IP
+# $com----待执行的命令
+
+set host [lindex $argv 0]
+set com [lindex $argv 1]
+set passwd "hx202823"
+
+spawn ssh root@$host
+
+expect {
+	"yes/no" { send "yes\r";exp_continue }
+	"password:" { send "$passwd\r" }
+}
+expect "]*"
+	send "$com\r"
+expect "]*"
+	send "exit\r"

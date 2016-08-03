@@ -5,11 +5,11 @@ echo "It will install lamp or lnmp."
 sleep 1
 ##check last command is OK or not.
 check_ok() {
-	if [ $? != 0 ]
-	then
-    	echo "Error, Check the error log."
-    	exit 1
-	fi
+if [ $? != 0 ]
+then
+    echo "Error, Check the error log."
+    exit 1
+fi
 }
 ##get the archive of the system,i686 or x86_64.
 # arch 输出机器的体系结构 
@@ -17,29 +17,31 @@ check_ok() {
 ar=`arch`
 
 ##close seliux(Need reboot)
+sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
+# 不重启，临时关闭selinux
 selinux_s=`getenforce`
 if [ $selinux_s == "Enforcing"  -o $selinux_s == "enforcing" ]
 then
-	sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
-	setenforce 0
+    setenforce 0
 fi
-
 ##close iptables
+
 # 先备份防火墙规则，备份文件名使用时间戳(S),防止覆盖
 iptables-save > /etc/sysconfig/iptables_`date +%s`
+# 再清空，保存
 iptables -F
 service iptables save
 
 ##if the packge installed ,then omit.
 myum() {
-	# "^$1" 以传递的参数（rpm包名）开头的精确匹配
-	if ! rpm -qa|grep -q "^$1"
-	then
-		yum install -y $1
-		check_ok
-	else
-		echo $1 already installed.
-	fi
+# "^$1" 以传递的参数（rpm包名）开头的精确匹配
+if ! rpm -qa|grep -q "^$1"
+then
+    yum install -y $1
+    check_ok
+else
+    echo $1 already installed.
+fi
 }
 
 ## install some packges.
@@ -70,19 +72,19 @@ wget -P /etc/yum.repos.d/ http://mirrors.aliyun.com/repo/epel-6.repo
 
 ##function of installing mysqld.
 install_mysqld() {
-    echo "Chose the version of mysql."
-    select mysql_v in 5.1 5.6
-    do
-        case $mysql_v in
+echo "Chose the version of mysql."
+select mysql_v in 5.1 5.6
+do
+    case $mysql_v in
         5.1)
-		    cd /usr/local/src
-            # 若存在mysql源码包，直接进行下一步；若不存在，则去下载。---->|| 实现
-            # 直接写 [-f ***]条件表达式
-		    [ -f mysql-5.1.72-linux-$ar-glibc23.tar.gz ] || wget http://mirrors.sohu.com/mysql/MySQL-5.1/mysql-5.1.72-linux-$ar-glibc23.tar.gz
+            cd /usr/local/src
+			# 若存在mysql源码包，直接进行下一步；若不存在，则去下载。---->|| 实现
+			# 直接写 [-f ***]条件表达式
+            [ -f mysql-5.1.72-linux-$ar-glibc23.tar.gz ] || wget http://mirrors.sohu.com/mysql/MySQL-5.1/mysql-5.1.72-linux-$ar-glibc23.tar.gz
             tar zxf mysql-5.1.72-linux-$ar-glibc23.tar.gz
             check_ok
 			# 若mysql目录已经存在，则备份后删除（时间戳防覆盖）
-			[ -d /usr/local/mysql ] && /bin/mv /usr/local/mysql /usr/local/mysql_`date +%s`
+            [ -d /usr/local/mysql ] && /bin/mv /usr/local/mysql /usr/local/mysql_`date +%s`
             mv mysql-5.1.72-linux-$ar-glibc23 /usr/local/mysql
             check_ok
             if ! grep '^mysql:' /etc/passwd
@@ -134,10 +136,10 @@ install_mysqld() {
             /bin/cp support-files/my-default.cnf /etc/my.cnf
             check_ok
             sed -i '/^\[mysqld\]$/a\datadir = /data/mysql' /etc/my.cnf
-	    	[ -f /etc/init.d/mysqld ] && /bin/mv /etc/init.d/mysqld /etc/init.d/mysqld_`date +%s`			
+	    [ -f /etc/init.d/mysqld ] && /bin/mv /etc/init.d/mysqld /etc/init.d/mysqld_`date +%s`			
             /bin/cp support-files/mysql.server /etc/init.d/mysqld
             sed -i 's#^datadir=#datadir=/data/mysql#' /etc/init.d/mysqld
-	    	sed -i 's#^basedir=#basedir=/usr/local/mysql#' /etc/init.d/mysqld
+	        sed -i 's#^basedir=#basedir=/usr/local/mysql#' /etc/init.d/mysqld
             chmod 755 /etc/init.d/mysqld
             chkconfig --add mysqld
             chkconfig mysqld on
@@ -149,8 +151,8 @@ install_mysqld() {
             echo "only 1(5.1) or 2(5.6)"
             #exit 1
             ;;
-        esac
-    done
+    esac
+done
 }
 
 ##function of install httpd.
@@ -190,50 +192,50 @@ install_httpd() {
 ##Compile php function
 php_compile() {
 	#安装依赖包
-	for p in openssl-devel bzip2-devel \
+	 for p in openssl-devel bzip2-devel \
               libxml2-devel curl-devel libpng-devel \
               libjpeg-devel freetype-devel libmcrypt-devel\
               libtool-ltdl-devel perl-devel
-	do
+     do
 		myum $p
-		check_ok
-	done
-
-    	./configure \
-        --prefix=/usr/local/php \
-        --with-apxs2=/usr/local/apache2/bin/apxs \
-        --with-config-file-path=/usr/local/php/etc  \
-        --with-mysql=/usr/local/mysql \
-        --with-libxml-dir \
-        --with-gd \
-        --with-jpeg-dir \
-        --with-png-dir \
-        --with-freetype-dir \
-        --with-iconv-dir \
-        --with-zlib-dir \
-		--with-bz2 \
-        --with-openssl \
-        --with-mcrypt \
-        --enable-soap \
-        --enable-gd-native-ttf \
-        --enable-mbstring \
-        --enable-sockets \
-        --enable-exif \
-        --disable-ipv6
         check_ok
-        make && make install
-		check_ok
+     done
+
+           ./configure \
+            --prefix=/usr/local/php \
+            --with-apxs2=/usr/local/apache2/bin/apxs \
+            --with-config-file-path=/usr/local/php/etc  \
+            --with-mysql=/usr/local/mysql \
+            --with-libxml-dir \
+            --with-gd \
+            --with-jpeg-dir \
+            --with-png-dir \
+            --with-freetype-dir \
+            --with-iconv-dir \
+            --with-zlib-dir \
+            --with-bz2 \
+            --with-openssl \
+            --with-mcrypt \
+            --enable-soap \
+            --enable-gd-native-ttf \
+            --enable-mbstring \
+            --enable-sockets \
+            --enable-exif \
+            --disable-ipv6
+            check_ok
+            make && make install
+            check_ok
 }
 
 ##function of install lamp's php.
 install_php() {
-    echo -e "Install php.\nPlease chose the version of php."
-    select php_v in 5.4 5.6
-    do
-        case $php_v in
+echo -e "Install php.\nPlease chose the version of php."
+select php_v in 5.4 5.6
+do
+    case $php_v in
         5.4)
             cd /usr/local/src/
-            # wget -O 指定下载文件保存名(--output)
+	    	# wget -O 指定下载文件保存名(--output)
             [ -f php-5.4.45.tar.bz2 ] || wget 'http://cn2.php.net/get/php-5.4.45.tar.bz2/from/this/mirror' -O php-5.4.45.tar.bz2
             tar jxf php-5.4.45.tar.bz2 && cd php-5.4.45
  
@@ -256,11 +258,11 @@ install_php() {
             break
             ;;
 
-        *) #输入非1/2时，重新输入
+         *) #输入非1/2时，重新输入
             echo "only 1(5.4) or 2(5.6)"
             ;;
-        esac
-    done
+    esac
+done
 }
 
 ##function of apache and php configue.
@@ -384,10 +386,10 @@ install_nginx() {
 
 ##function of install php-fpm
 install_phpfpm() {
-    echo -e "Install php-fpm.\nPlease chose the version of php."
-    select php_v in 5.4 5.6
-    do
-        case $php_v in
+echo -e "Install php.\nPlease chose the version of php."
+select php_v in 5.4 5.6
+do
+    case $php_v in
         5.4)
             cd /usr/local/src/
             [ -f php-5.4.45.tar.bz2 ] || wget 'http://cn2.php.net/get/php-5.4.45.tar.bz2/from/this/mirror' -O php-5.4.45.tar.bz2
@@ -498,16 +500,16 @@ install_phpfpm() {
         *)
             echo 'only 1(5.4) or 2(5.6)'
             ;;
-        esac
-    done
+    esac
+done
 }
 
 ##function of install lnmp
 lnmp() {
-	check_service mysqld
-	check_service nginx
-	check_service phpfpm
-	echo "The lnmp done, Please use 'http://your ip/index.php' to access."
+check_service mysqld
+check_service nginx
+check_service phpfpm
+echo "The lnmp done, Please use 'http://your ip/index.php' to access."
 }
 
 ##function of enter

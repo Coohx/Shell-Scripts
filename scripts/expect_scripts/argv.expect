@@ -1,0 +1,25 @@
+#!/usr/bin/expect
+# expect 传递参数
+
+#将第一个参数$argv 0传递给变量user
+set user [lindex $argv 0]
+set host [lindex $argv 1]
+set passwd [lindex $argv 2]
+set comm [lindex $argv 3]
+
+spawn ssh $user@$host
+
+expect {
+    "yes/no" {send "yes\r";exp_continue}
+    "password:" {send "$passwd\r"}
+}
+expect "]*"
+send "$comm\r"
+expect "]*"
+send "exit\r"
+
+# 放在结尾,自动退出登录
+# expect eof
+
+# 放在结尾。interact 不会退出登陆
+#interact

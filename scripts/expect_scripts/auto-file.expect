@@ -1,0 +1,17 @@
+#! /usr/bin/expect
+# 根据ip批量同步文件
+
+set host [lindex $argv 0]
+set passwd "hx202823"
+# 变量file为一个要同步的文件列表
+set file [lindex $argv 1]
+set source [lindex $argv 2]
+# rsync --files-from  指定一个存有一批文件列表的文件
+# $source 指定要同步文件流的路径,一般为/
+spawn rsync -avzP --files-from=$file $source root@$host:/root/tmp/
+
+expect {
+	"yes/no" {send "yes\r"; exp_continue}
+	"password:" {send "$passwd\r"}
+}
+expect eof
