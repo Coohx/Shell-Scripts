@@ -1,0 +1,16 @@
+#! /usr/bin/expect
+# 根据ip批量同步文件
+
+set host [lindex $argv 0]
+set passwd "hx202823"
+set file [lindex $argv 1]
+
+# $file 同时指定本地和远程主机的路径，符合标准化
+
+spawn rsync -avzP $file root@$host:/usr/local/
+
+expect {
+	"yes/no" {send "yes\r"; exp_continue}
+	"password:" {send "$passwd\r"}
+}
+expect eof
