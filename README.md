@@ -15,4 +15,4 @@ shell 学习笔记
 
 7. Sed: sed 练习
 
-8. System _ monotor : 系统监控项：内存、硬盘、CPU、Process
+8. System _ monitor : 系统监控项：内存、硬盘、CPU、Process
