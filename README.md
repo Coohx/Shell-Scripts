@@ -10,3 +10,7 @@ shell 学习笔记
 4. scripts: Shell基础语法练习
 
 5. Expect-脚本: expect自动交互语法
+
+6. AWK_Language: awk脚本
+
+7. Sed: sed 练习
