@@ -1,0 +1,10 @@
+1936 图灵提出人类历史上第一个人工智能的概念
+1946 世界上第一台计算机"埃尼阿克(ENIAC)"在美国丙烯法尼亚大学诞生 
+1956 第二代计算机产生
+1969 Ken.Thompso Dernis.Ritchie发布第一版Unix
+1979 AT&T从各大学收回Unix版权，此后诞生了System V 和 BSD 两个版本线的Unix操作系统
+1983 Richard Stallman创建GNU(GNU is not Unix.),1983-1991年GNU三大软件:Bash shell、gcc、emacs.
+1991 Linus Torvalds发布Linux内核
+1994 Lins 加入GNU,GNU系列软件与Linux内核结合，退出linus's minix，简称Linux.
+1995 hx出生
+2016 hx接触并学习使用Linux.

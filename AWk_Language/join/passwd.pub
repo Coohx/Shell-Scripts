@@ -1,0 +1,55 @@
+root:$6$RaJg0A7m$o/YUL3f1vw/6LZXTGXH6CQ41mpx7RZRm8PvboTUzv1/8WD.23YeSa9aRZk2E7EMeKyTgqvqmp7JiCwMkhBiDG1:0:0:root:/root:/bin/bash
+bin:*:1:1:bin:/bin:/sbin/nologin
+daemon:*:2:2:daemon:/sbin:/sbin/nologin
+adm:*:3:4:adm:/var/adm:/sbin/nologin
+lp:*:4:7:lp:/var/spool/lpd:/sbin/nologin
+sync:*:5:0:sync:/sbin:/bin/sync
+shutdown:*:6:0:shutdown:/sbin:/sbin/shutdown
+halt:*:7:0:halt:/sbin:/sbin/halt
+mail:*:8:12:mail:/var/spool/mail:/sbin/nologin
+uucp:*:10:14:uucp:/var/spool/uucp:/sbin/nologin
+operator:*:11:0:operator:/root:/sbin/nologin
+games:*:12:100:games:/usr/games:/sbin/nologin
+gopher:*:13:30:gopher:/var/gopher:/sbin/nologin
+ftp:*:14:50:FTP User:/var/ftp:/sbin/nologin
+nobody:*:99:99:Nobody:/:/sbin/nologin
+dbus:!!:81:81:System message bus:/:/sbin/nologin
+vcsa:!!:69:69:virtual console memory owner:/dev:/sbin/nologin
+rpc:!!:32:32:Rpcbind Daemon:/var/cache/rpcbind:/sbin/nologin
+saslauth:!!:499:76:Saslauthd user:/var/empty/saslauth:/sbin/nologin
+postfix:!!:89:89::/var/spool/postfix:/sbin/nologin
+haldaemon:!!:68:68:HAL daemon:/:/sbin/nologin
+rpcuser:!!:29:29:RPC Service User:/var/lib/nfs:/sbin/nologin
+nfsnobody:!!:65534:65534:Anonymous NFS User:/var/lib/nfs:/sbin/nologin
+sshd:!!:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
+pureftp:!!:506:506::/home/pureftp:/bin/bash
+ntp:!!:38:38::/etc/ntp:/sbin/nologin
+vsftp_user:!!:507:507::/home/vsftp_user:/sbin/nologin
+smbuser:$6$BkyGrTgg$bKRpwROMRZwRF6NFKR3yLTex29xiyBazz.ctJbq/kKKV0Jsc9r8ejZEKS9HSv6drNkYq0mkPZUenm0Tk0cJHs1:508:508::/home/smbuser:/sbin/nologin
+squid:!!:23:23::/var/spool/squid:/sbin/nologin
+tcpdump:!!:72:72::/:/sbin/nologin
+user1:!!:510:510::/home/user1:/bin/bash
+smbu:!!:511:511::/home/smbu:/bin/bash
+mysql:!!:505:505::/home/mysql:/sbin/nologin
+exim:!!:93:93::/var/spool/exim:/sbin/nologin
+named:!!:25:25:Named:/var/named:/sbin/nologin
+rtkit:!!:498:498:RealtimeKit:/proc:/sbin/nologin
+pulse:!!:497:497:PulseAudio System Daemon:/var/run/pulse:/sbin/nologin
+avahi-autoipd:!!:170:170:Avahi IPv4LL Stack:/var/lib/avahi-autoipd:/sbin/nologin
+gdm:!!:42:42::/var/lib/gdm:/sbin/nologin
+hacluster:!!:496:492:heartbeat user:/var/lib/heartbeat/cores/hacluster:/sbin/nologin
+nginx:!!:495:491:Nginx web server:/var/lib/nginx:/sbin/nologin
+nagios:!!:494:490::/var/spool/nagios:/sbin/nologin
+apache:!!:48:48:Apache:/var/www:/sbin/nologin
+nrpe:!!:493:489:NRPE user for the NRPE service:/var/run/nrpe:/sbin/nologin
+zabbix:!!:492:488:Zabbix Monitoring System:/var/lib/zabbix:/sbin/nologin
+zabbixsrv:!!:491:488:Zabbix Monitoring System -- Proxy or server:/var/lib/zabbixsrv:/sbin/nologin
+mailnull:!!:47:47::/var/spool/mqueue:/sbin/nologin
+smmsp:!!:51:51::/var/spool/mqueue:/sbin/nologin
+test:!!:512:0::/home/test:/bin/bash
+huangxin:$6$COHtQ.4f$ooAHQVrxyzDRrxa318H4NxnrpV5F7vFhG6FUxHuO4cpxcrJYuXnYecqeGlfqxFJ9/.VlN1/XGgdf8QY9ABkNP0:513:513::/home/huangxin:/bin/bash
+memcached:!!:490:487:Memcached daemon:/var/run/memcached:/sbin/nologin
+redis:!!:514:514::/home/redis:/sbin/nologin
+mongod:!!:489:486:mongod:/var/lib/mongo:/bin/false
+radvd:!!:75:75:radvd user:/:/sbin/nologin
+qemu:!!:107:107:qemu user:/:/sbin/nologin
