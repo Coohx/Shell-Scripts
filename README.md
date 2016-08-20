@@ -1,4 +1,4 @@
-shell 学习笔记
+Shell Practice
 ==========
 
 1. Tans _ file: 自动分发文件系统
