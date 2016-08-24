@@ -8,6 +8,6 @@
 > Usage: 创建计划任务，一分钟运行一次.
 
 ```
-	*/1 * * * * /bin/bsah /root/Git/Shell-Scripts/logrotation/logrotate.sh >/tmp/logrotate.log 2>/dev/null
+	*/1 * * * * /bin/bsah /root/Git/Shell-Scripts/logrotation/logrotate.sh &>/dev/null &
 
 ```
