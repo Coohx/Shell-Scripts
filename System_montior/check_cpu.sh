@@ -27,7 +27,8 @@ watch_cpu(){
 	# cpu总时间total 从开机起一直在累加
 	cpu_usage=`echo "$time_point_1 $time_point_2" | \
 		         awk '{used=$3-$1; total+=$3+$4-$1-$2; \
-				       print int(used*100/total)}'`
+				       print used*100/total}' | cut -d'.' -f 1`
+#                     print int(used*100/total)}'
 	if [ $cpu_usage -gt $cpu_quota ];then
 		cpu_message=" ALARM!!! The cpu usage is over $cpu_usage!!!"
 		flag_cpu=1
