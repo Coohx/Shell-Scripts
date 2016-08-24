@@ -79,8 +79,8 @@ backuplog_process(){
 }
 
 # 定期轮询系统日志文件夹
-while true
-do
+#while true
+#do
 	backuplog_process
-	sleep $SLEEPTIME
-done
+#	sleep $SLEEPTIME
+#done
