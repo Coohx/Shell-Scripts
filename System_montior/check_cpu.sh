@@ -37,4 +37,4 @@ watch_cpu(){
 	fi
 }
 
-#watch_cpu
+watch_cpu

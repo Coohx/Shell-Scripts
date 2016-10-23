@@ -15,6 +15,8 @@ Shell Practice
 
 7. Sed: sed 练习
 
-8. System _ monitor : 系统监控项：内存、硬盘、CPU、Process
+8. System _ monitor： 系统监控项：内存、硬盘、CPU、Process
 
 9. logrotation: 监控系统日志，定期清除无用日志，备份重要日志
+
+10. Interview_questions：2016-09-21..2016-09-30 面试题
