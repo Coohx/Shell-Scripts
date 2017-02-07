@@ -21,4 +21,4 @@ Shell Practice
 
 - Interview_questions: 2016-09-21..2016-09-30 面试题
 
-- Chrom_install: 在CentOS6.x系统上安装Chrome浏览器
+- Chrome_install: 在CentOS6.x系统上安装Chrome浏览器
