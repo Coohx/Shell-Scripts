@@ -15,8 +15,10 @@ Shell Practice
 
 - Sed: sed 练习
 
-- System _ monitor： 系统监控项：内存、硬盘、CPU、Process
+- System _ monitor: 系统监控项：内存、硬盘、CPU、Process
 
 - logrotation: 监控系统日志，定期清除无用日志，备份重要日志
 
-- Interview_questions：2016-09-21..2016-09-30 面试题
+- Interview_questions: 2016-09-21..2016-09-30 面试题
+
+- Chrom_install: 在CentOS6.x系统上安装Chrome浏览器
