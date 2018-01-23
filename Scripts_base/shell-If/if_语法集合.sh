@@ -23,7 +23,7 @@ fi
 #############字符串变量表达式#################
 var1=huangxin
 var2=coohx
-#字符串变量判断相等时,等号与左右两边的变量有空格,否则条件表达式‘$var="string"’会被识别为一个变量，即变量 $var="string"
+#字符串变量判断相等时,等号与左右两边的变量有空格,否则条件表达式‘$var="string" ’会被识别为一个变量，即变量 $var="string"
 if  [ $var2 = "huangxin" ]
 then
 	echo "var2=huangxin"

@@ -1,6 +1,6 @@
 #! /bin/bash
 ## -n 判断变量值不为空
-## Written by huanxgin
+## Written by huangxin
 
 while :
 do
