@@ -1,10 +1,12 @@
 #!/bin/bash
 # check the usage of CPU
-
+## cpu_total1=user+nice+system+idle+iowait+irq+softirq
+## cpu_used1=user+nice+system+irq+softirq
+##
 # Maximum ratio of cpu usage
 cpu_quota=80
 # Time gap between two times fetching cpu status
-time_gap=60
+time_gap=15
 
 # This is a function to fetch cpu status at a time point.
 # Format:used unused
@@ -12,7 +14,7 @@ time_gap=60
 get_cpu_info(){
     # 对多核cpu，将所有的cpu核心的数据项预先相加后再输出
 	cat /proc/stat | grep -i '^cpu[0-9]\+' | \
-                  awk '{used+=$2+$3+$4; unused+=$5+$6+$7+$8} \
+                  awk '{used+=$2+$3+$4+$7+$8; unused+=$5+$6} \
 					   END{print used,unused}' 
 }
 
